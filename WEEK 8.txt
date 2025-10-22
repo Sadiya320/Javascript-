@@ -1,0 +1,43 @@
+<html lang="en"><head>
+  
+  <title>Digital Clock</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: white;
+      font-size: 5em;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="clock">05:49:40 PM</div>
+
+  <script>
+    function updateClock() {
+  const now = new Date();
+  let hours = now.getHours();
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+
+  hours = hours % 12 || 12; // Convert 0 to 12
+  hours = String(hours).padStart(2, '0');
+
+  const timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
+  document.getElementById('clock').textContent = timeString;
+}
+
+    
+
+    // Update clock every second
+    setInterval(updateClock, 1000);
+    updateClock(); // Initial call
+  </script>
+
+
+
+</body></html>
