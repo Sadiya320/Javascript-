@@ -1,0 +1,33 @@
+<html><head> </head>
+<body>
+    <p> Enter a number to guess the number </p>
+  <input type="text" id="num" name="num" .=""> 
+  <p id="result">Result: </p>
+  <button onclick="guess()" id="button">submit </button>
+  <button id="newgame"> NewGame</button>
+<script>
+ 	var r=500
+	var i=document.getElementById("num")
+	var result=document.getElementById("result")
+
+	function guess()
+	{
+		    console.log("button clicked!")
+		    var inum=i.value
+		inum=parseInt(inum)
+    	if(inum==r)
+	{
+        	  result.innerText="Result:you guessed  the correct number"
+   	 }
+    	else if(inum<r)
+	{
+   	       result.innerText="Result:number is too small"
+    	}
+    	else if(inum>r)
+	{
+          result.innerText="Result:Number is too big"
+   	 }
+	}
+</script>
+
+</body></html>

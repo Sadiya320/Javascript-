@@ -1,0 +1,38 @@
+<html>
+<head> </head>
+<body>
+
+	<label for="dollar">Dollar </label>
+	<input id="dollar" type="number" name="dollar"> 
+	<button id="convert1" onclick="convert()"> Convert </button>
+	
+<br>
+<br>
+	<label for="rupee">Rupees </label>
+	<input id="rupee" type="number" name="rupee"> 	
+	<button id="convert" onclick="convertMoney()"> Convert </button>
+
+	
+
+<script>
+var dollarBox=document.getElementById("dollar")
+var rupeeBox=document.getElementById("rupee")
+var convertBox=document.getElementById("convert")
+
+
+function convertMoney()
+{
+	var value=dollarBox.value
+	value *=87
+	rupeeBox.value=value
+}
+function convert()
+{
+	var value=rupeeBox.value
+	value *=0.011494252873563218
+	dollarBox.value=value
+}
+
+
+</script>
+</body></html>
