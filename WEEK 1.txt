@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+ </head>
+<body>
+<center>
+  <header>
+    <h1> Hi, I'm Sadiya </h1>
+    <p>Aspiring Web Developer</p>
+  </header>
+
+  <section>
+    <h2>About Me</h2>
+    <p>I’m learning HTML, CSS, and JavaScript. This is my first portfolio project!</p>
+    <button onclick="changeTheme()">Change Background Color</button>
+  </section>
+</center>
+  
+  
+
+  <script>
+    function changeTheme() {
+      const colors = ["#f4f7fc", "#ffe4e1", "#e6ffe6", "#e0f7fa", "#fff0b3"];
+      document.body.style.backgroundColor =
+        colors[Math.floor(Math.random() * colors.length)];
+    }
+  </script>
+
+</body>
+</html>
