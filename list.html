@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Favorites</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+    h1 {
+      color: #0077cc;
+    }
+    input, select, button {
+      padding: 8px;
+      margin: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #0077cc;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background: white;
+      margin: 5px auto;
+      padding: 8px;
+      width: 250px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .remove {
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      padding: 3px 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>My Favorites 🎬🎵📚</h1>
+  <p>Add your favorite movie, song, or book below:</p>
+
+  <input type="text" id="item" placeholder="Enter name">
+  <select id="type">
+    <option value="Movie">Movie</option>
+    <option value="Music">Music</option>
+    <option value="Book">Book</option>
+  </select>
+  <button onclick="addFavorite()">Add</button>
+
+  <h3>My Wishlist</h3>
+  <ul id="list"></ul>
+
+  <script>
+    // Get saved list from browser, or start empty
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    // Show saved items on page
+    function showList() {
+      const list = document.getElementById("list");
+      list.innerHTML = "";
+      favorites.forEach((fav, index) => {
+        list.innerHTML += `
+          <li>
+            <span>${fav.type}: ${fav.name}</span>
+            <button class="remove" onclick="removeFavorite(${index})">X</button>
+          </li>
+        `;
+      });
+    }
+
+    // Add new favorite
+    function addFavorite() {
+      const name = document.getElementById("item").value.trim();
+      const type = document.getElementById("type").value;
+      if (name === "") return alert("Please enter a name!");
+      favorites.push({ name, type });
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      document.getElementById("item").value = "";
+      showList();
+    }
+
+    // Remove favorite
+    function removeFavorite(index) {
+      favorites.splice(index, 1);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+      showList();
+    }
+
+    // Load list when page opens
+    showList();
+  </script>
+
+</body>
+</html>
