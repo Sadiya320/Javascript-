@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<html><head>
   <title>Weather App</title>
   <style>
     body { font-family: Arial; text-align:center; padding:50px; background:#eef; }
@@ -17,8 +15,8 @@
   <div class="weather" id="weather"></div>
 
 <script>
-  // ✅ Replace this with your OpenWeatherMap API key
-  const apiKey = "YOUR_API_KEY_HERE";
+  //  Replace this with your OpenWeatherMap API key
+  const apiKey = "327e297003d2429e22178f4141511948";
 
   async function getWeather() {
     const city = document.getElementById("city").value;
@@ -44,5 +42,6 @@
   }
 </script>
 
-</body>
-</html>
+
+
+</body></html>
