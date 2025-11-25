@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Wishlist; }
+    
+    
+  </title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Floating pattern background */
+    body::before {
+      content: "";
+      position: absolute;
+      width: 150%;
+      height: 150%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: float 25s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0,0); }
+      50% { transform: translate(-50px,50px); }
+      100% { transform: translate(0,0); }
+    }
+
+    .wishlist-container {
+      position: relative;
+      background: rgba(255,255,255,0.95);
+      padding: 30px;
+      border-radius: 20px;
+      width: 420px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    select, input {
+      padding: 12px;
+      margin: 8px 0;
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    select:focus, input:focus {
+      border-color: #74ebd5;
+      box-shadow: 0 0 5px rgba(116,235,213,0.5);
+    }
+
+    button {
+      padding: 12px;
+      width: 100%;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #ff7e5f, #feb47b);
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border-radius: 12px;
+      font-size: 16px;
+      color: #fff;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transform: translateY(0);
+      animation: slideIn 0.5s ease forwards;
+      opacity: 0;
+    }
+
+    li.show {
+      opacity: 1;
+    }
+
+    li button {
+      padding: 6px 12px;
+      background: #dc3545;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    li button:hover {
+      background: #c82333;
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateY(-20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Category colors */
+    .Movies { background: #FF6F61; }
+    .Books { background: #6B5B95; }
+    .Games { background: #88B04B; }
+    .Music { background: #F7CAC9; color: #333; }
+    .Other { background: #92A8D1; }
+
+    /* Emoji badges using CSS */
+    .Movies::before { content: "🎬 "; }
+    .Books::before { content: "📚 "; }
+    .Games::before { content: "🎮 "; }
+    .Music::before { content: "🎵 "; }
+    .Other::before { content: "✨ "; }
+  </style>
+</head>
+<body>
+  <div class="wishlist-container">
+    <h2>My Wishlist 🎬📚🎮🎵✨</h2>
+    <select id="category">
+      <option value="">Select Category</option>
+      <option value="Movies">Movies</option>
+      <option value="Books">Books</option>
+      <option value="Games">Games</option>
+      <option value="Music">Music</option>
+      <option value="Other">Other</option>
+    </select>
+    <input type="text" id="itemInput" placeholder="Add item to wishlist">
+    <button onclick="addItem()">Add Item</button>
+    <ul id="wishlist"></ul>
+  </div>
+
+  <script>
+    const wishlist = document.getElementById('wishlist');
+    const category = document.getElementById('category');
+    const itemInput = document.getElementById('itemInput');
+
+    function addItem() {
+      const cat = category.value;
+      const item = itemInput.value.trim();
+
+      if (!cat) {
+        alert("Please select a category!");
+        return;
+      }
+      if (!item) {
+        alert("Please enter an item!");
+        return;
+      }
+
+      const li = document.createElement('li');
+      li.classList.add(cat);
+      li.innerHTML = `${item} <button onclick="removeItem(this)">Remove</button>`;
+
+      wishlist.appendChild(li);
+      // trigger animation
+      setTimeout(() => li.classList.add('show'), 10);
+
+      itemInput.value = "";
+      category.value = "";
+    }
+
+    function removeItem(button) {
+      button.parentElement.remove();
+    }
+  </script>
+</body>
+</html>
